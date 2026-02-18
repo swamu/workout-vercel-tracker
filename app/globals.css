@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.header p {
+  margin: 8px 0;
+}
+
+.progress {
+  font-size: 18px;
+}
+
+.table-wrap {
+  margin-top: 18px;
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 960px;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background: #eef2ff;
+  color: #111827;
+}
+
+.done-row {
+  background: #ecfdf5;
+}
+
+input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
