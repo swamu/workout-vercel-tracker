@@ -34,7 +34,7 @@ function parseCsvLine(line) {
 }
 
 async function loadPlanFromCsv() {
-  const csvPath = path.join(process.cwd(), 'app', 'Phase1_Weeks1_4_2026.csv');
+  const csvPath = path.join(process.cwd(), 'final-week-1-12.csv');
   const csv = await readFile(csvPath, 'utf8');
   const lines = csv
     .split(/\r?\n/)
