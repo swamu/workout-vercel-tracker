@@ -34,7 +34,7 @@ function parseCsvLine(line) {
 }
 
 async function loadPlanFromCsv() {
-  const csvPath = path.join(process.cwd(), 'final-week-1-12.csv');
+  const csvPath = path.join(process.cwd(), 'app', 'Weeks1_12_2026.csv');
   const csv = await readFile(csvPath, 'utf8');
   const lines = csv
     .split(/\r?\n/)
@@ -43,11 +43,34 @@ async function loadPlanFromCsv() {
 
   if (lines.length < 2) return [];
 
-  const [, ...rows] = lines;
+  const [headerLine, ...rows] = lines;
+  const headers = parseCsvLine(headerLine).map((header) =>
+    header.toLowerCase().replace(/[^a-z0-9]/g, '')
+  );
+  const indexByHeader = Object.fromEntries(
+    headers.map((header, index) => [header, index])
+  );
+
+  const getField = (fields, key, fallbackIndex) =>
+    fields[indexByHeader[key] ?? fallbackIndex] || '';
 
   return rows.map((row) => {
-    const [date, day, mainWorkout, plankFocus, absFocus] = parseCsvLine(row);
-    return { date, day, mainWorkout, plankFocus, absFocus };
+    const fields = parseCsvLine(row);
+    const date = getField(fields, 'date', 0);
+    const day = getField(fields, 'day', 1);
+    const mainWorkout = getField(fields, 'mainworkout', 2);
+    const absFocus = getField(fields, 'absfocus', 3);
+    const plankFocus = getField(fields, 'plankfocus', 4);
+    const lowerBack = getField(fields, 'lowerback', 5);
+
+    return {
+      date,
+      day,
+      mainWorkout,
+      absFocus,
+      plankFocus,
+      lowerBack
+    };
   });
 }
 
